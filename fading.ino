@@ -8,8 +8,9 @@ int buttonInput = 2;
 int buttonPrevious = 0;
 void setup()  { 
   Serial.begin(9600);
+  
+  pinMode(buttonInput,INPUT
   digitalWrite(buttonInput, HIGH);
-  pinMode(buttonInput,INPUT);
   // nothing happens in setup 
 } 
 
@@ -18,10 +19,10 @@ void loop()  {
     fl1.ficker();
     fl2.ficker();
   }
-  int b1 = digitalRead(buttonInput);
-  if(b1 = 1 && b1 != buttonPrevious){
-    running = !running; 
-  }
-   Serial.println(b1);
-   buttonPrevious = b1;
+  //int b1 = digitalRead(buttonInput);
+  //if(b1 = 1 && b1 != buttonPrevious){
+  //  running = !running; 
+  //}
+  // Serial.println(b1);
+  // buttonPrevious = b1;
 }
