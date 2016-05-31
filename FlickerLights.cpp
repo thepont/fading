@@ -18,7 +18,7 @@ void FlickerLights::ficker(){
     analogWrite(pin, fadeValue);
     if(fadeValue >= upperValue || fadeValue <= lowerValue){
       volocity = -volocity;
-      interval = random(1,20);
+      interval = random(intervalLow,intervalHigh);
       upperValue = random(upperValueLow, upperValueHigh);
       lowerValue = random(lowerValueLow, lowerValueHigh);
       fadeValue = volocity < 0 ? upperValue : lowerValue;

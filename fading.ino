@@ -2,7 +2,7 @@
 #include "FlickerLights.h"
 
 FlickerLights fl1(9, 255, 150, 170, 0, 0, 20);
-FlickerLights fl2(10, 255, 120, 170, 110, 6, 120);
+FlickerLights fl2(10, 255, 110, 170, 110, 6, 60);
 boolean running = true;
 int buttonInput = 2;
 int buttonPrevious = 0;
