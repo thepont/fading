@@ -27,11 +27,12 @@ void FlickerLights::ficker(){
       }
     }
   }
+}
   
-  void FlickerLights::toggleRunning(){
+void FlickerLights::toggleRunning(){
     running = !running;
     if(!running){
-      analogWrite(pin, 0);
+        analogWrite(pin, 0);
     }
-  }
 }
+

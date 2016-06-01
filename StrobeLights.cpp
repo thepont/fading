@@ -7,9 +7,9 @@ StrobeLights::StrobeLights(int pin, int duration){
     pinMode(pin, OUTPUT);
 }
 
-virtual void StrobeLights::run() override {
+void StrobeLights::run() {
     long currentMillis = millis();
-    if(currentMillis - previousMillis > interval) {
+    if(currentMillis - previousMillis > duration) {
         previousMillis = currentMillis;
         if(digitalRead(pin) == HIGH){
             digitalWrite(pin, LOW);    

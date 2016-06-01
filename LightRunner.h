@@ -13,7 +13,7 @@ class LightRunner
                 analogWrite(pin, 0);
             }
         };
-    private:
+    protected:
         int pin;
         bool running;
 };
