@@ -13,6 +13,7 @@ class FlickerLights
   public:
     FlickerLights(int pin, int upperValueHigh, int upperValueLow, int lowerValueHigh, int lowerValueLow, int intervalLow, int intervalHigh);
     void ficker();
+    void toggleRunning();
   private:
     int intervalLow;
     int intervalHigh;
@@ -27,5 +28,6 @@ class FlickerLights
     int pin = 0;
     int interval = 0;
     long previousMillis = 0;
+    bool running;
 };
 #endif
