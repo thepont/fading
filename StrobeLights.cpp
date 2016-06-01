@@ -9,15 +9,17 @@ StrobeLights::StrobeLights(int pin, int duration){
 }
 
 void StrobeLights::run() {
-    long currentMillis = millis();
-    if(currentMillis - previousMillis > duration) {
-        previousMillis = currentMillis;
-        if(on){
-            on = false;
-            digitalWrite(pin, LOW);    
-        } else {
-            on = true;
-            digitalWrite(pin, HIGH);    
-        }
+    if(running){
+      long currentMillis = millis();
+      if(currentMillis - previousMillis > duration) {
+          previousMillis = currentMillis;
+          if(on){
+              on = false;
+              digitalWrite(pin, LOW);    
+          } else {
+              on = true;
+              digitalWrite(pin, HIGH);    
+          }
+      }
     }
 }

@@ -1,18 +1,15 @@
-/*
-  Morse.h - Library for flashing Morse code.
-  Created by David A. Mellis, November 2, 2007.
-  Released into the public domain.
-*/
 #ifndef FlickerLights_h
 #define FlickerLights_h
 
 #include "Arduino.h"
+#include "LightRunner.h"
 
-class FlickerLights
+
+class FlickerLights: public LightRunner
 {
   public:
     FlickerLights(int pin, int upperValueHigh, int upperValueLow, int lowerValueHigh, int lowerValueLow, int intervalLow, int intervalHigh);
-    void ficker();
+    void run() override;
     void toggleRunning();
   private:
     int intervalLow;

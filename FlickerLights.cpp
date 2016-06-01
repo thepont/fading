@@ -11,7 +11,7 @@ FlickerLights::FlickerLights(int pin, int upperValueHigh, int upperValueLow, int
   this->intervalHigh = intervalHigh;
 }
 
-void FlickerLights::ficker(){
+void FlickerLights::run(){
   if(running){
     long currentMillis = millis();
     if(currentMillis - previousMillis > interval) {
