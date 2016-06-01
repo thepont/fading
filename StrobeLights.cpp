@@ -4,6 +4,7 @@ StrobeLights::StrobeLights(int pin, int duration){
     this->pin = pin;
     this->duration = duration;
     this->running = true;
+    this->on = false;
     pinMode(pin, OUTPUT);
 }
 
@@ -11,10 +12,11 @@ void StrobeLights::run() {
     long currentMillis = millis();
     if(currentMillis - previousMillis > duration) {
         previousMillis = currentMillis;
-        if(digitalRead(pin) == HIGH){
+        if(on){
+            on = false;
             digitalWrite(pin, LOW);    
-        }
-        if(digitalRead(pin) == LOW){
+        } else {
+            on = true;
             digitalWrite(pin, HIGH);    
         }
     }

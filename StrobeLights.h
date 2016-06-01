@@ -13,5 +13,6 @@ class StrobeLights: public LightRunner
   private:
     int duration;
     long previousMillis;
+    boolean on;
 };
 #endif
