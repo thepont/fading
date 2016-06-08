@@ -12,6 +12,6 @@ class ConstantLight: public LightRunner
     void run() override;
   private:
     int amount;
-    long lastWriteMs =0;
+    long lastWriteMs = 0;
 };
 #endif

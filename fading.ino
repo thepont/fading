@@ -3,32 +3,43 @@
 #include "StrobeLights.h"
 #include "ConstantLight.h"
 
-FlickerLights fl1(9, 255, 150 , 170, 0, 0, 10);
-FlickerLights fl2(10, 160, 40, 170, 10, 6, 60);
-FlickerLights fl3(11, 40, 10, 90, 10, 6, 60);
+const int MODE_ARRAY_SIZE = 12
+const int BUTTON_INPUT = 2
+const int LED_1_PIN = 9
+const int LED_2_PIN = 10
+const int LED_2_PIN = 11
 
-ConstantLight cl1(11, 20);
 
-StrobeLights sl1(9, 60);
-StrobeLights sl2(10, 50);
-StrobeLights sl3(11, 50);
+FlickerLights fl1(LED_1_PIN, 255, 150 , 170, 0, 0, 10);
+FlickerLights fl2(LED_2_PIN, 160, 40, 170, 10, 6, 60);
+FlickerLights fl3(LED_3_PIN, 40, 10, 90, 10, 6, 60);
 
-ConstantLight constantBright1(9, 254);
-ConstantLight constantBright2(10, 254);
-ConstantLight constantBright3(11, 254);
+ConstantLight cl1(LED_2_PIN, 20);
 
-LightRunner * lightRunnders[12];
+StrobeLights sl1(LED_1_PIN, 60);
+StrobeLights sl2(LED_2_PIN, 50);
+StrobeLights sl3(LED_3_PIN, 50);
+
+ConstantLight constantBright1(LED_1_PIN, 254);
+ConstantLight constantBright2(LED_2_PIN, 254);
+ConstantLight constantBright3(LED_3_PIN, 254);
+
+LightRunner * lightRunnders[MODE_ARRAY_SIZE];
 
 int basePtr = 0;
-
-int buttonInput = 2;
 int buttonPrevious = 0;
+long currentMillis;
+long buttonReadMillis;
+int b1;
+
 void setup(){
   Serial.begin(9600);
   
   //Button Init.
   pinMode(buttonInput,INPUT);
-  digitalWrite(buttonInput, HIGH);   
+  digitalWrite(buttonInput, HIGH);
+
+  //Populate Light Runners
   lightRunnders[0] = &fl1;
   lightRunnders[1] = &fl2;
   lightRunnders[2] = &cl1;
@@ -37,26 +48,22 @@ void setup(){
   lightRunnders[4] = &fl2;
   lightRunnders[5] = &fl3;
   
-  lightRunnders[6] = &sl1;
-  lightRunnders[7] = &sl2;
-  lightRunnders[8] = &sl3;
-  
-  lightRunnders[9] = &constantBright1;
-  lightRunnders[10] = &constantBright2;
-  lightRunnders[11] = &constantBright3;
+  lightRunnders[6] = &constantBright1;
+  lightRunnders[7] = &constantBright2;
+  lightRunnders[8] = &constantBright3;
 
+  lightRunnders[9] = &sl1;
+  lightRunnders[10] = &sl2;
+  lightRunnders[11] = &sl3;
 } 
 
-long currentMillis;
-long buttonReadMillis;
-
 void loop()  {  
-//  fl1.ficker()
-//  fl2.ficker();
+
   lightRunnders[basePtr]->run();
   lightRunnders[basePtr+1]->run();
   lightRunnders[basePtr+2]->run();
-  int b1 = digitalRead(buttonInput);
+
+  b1 = digitalRead(BUTTON_INPUT);
   
   if(b1 == 0){
     if( b1 != buttonPrevious){
@@ -74,8 +81,6 @@ void loop()  {
         basePtr = 0;
       }
     }
-    //fl1.toggleRunning();
-    //fl2.toggleRunning();
   }
   buttonPrevious = b1;
 }
