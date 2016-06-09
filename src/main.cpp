@@ -73,7 +73,6 @@ void loop()  {
       buttonReadMillis = currentMillis;
       if(basePtr != 9){
          basePtr+=3;
-         Serial.print(basePtr / 3);
       }else{
         basePtr = 0;
       }
