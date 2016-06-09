@@ -33,7 +33,7 @@ long buttonReadMillis;
 int b1;
 
 void setup(){
-  Serial.begin(9600);
+  // Serial.begin(9600);
 
   //Button Init.
   pinMode(BUTTON_INPUT,INPUT);
@@ -72,11 +72,9 @@ void loop()  {
     if( currentMillis - buttonReadMillis >= 1000 ){
       buttonReadMillis = currentMillis;
       if(basePtr != 9){
-         Serial.print("Light Mode");
          basePtr+=3;
          Serial.print(basePtr / 3);
       }else{
-        Serial.println("Zero");
         basePtr = 0;
       }
     }
