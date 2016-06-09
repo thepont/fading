@@ -71,7 +71,7 @@ void loop()  {
     currentMillis = millis();
     if( currentMillis - buttonReadMillis >= 1000 ){
       buttonReadMillis = currentMillis;
-      if(basePtr != 9){
+      if(basePtr <= 9){
          basePtr+=3;
       }else{
         basePtr = 0;
